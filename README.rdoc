@@ -8,7 +8,7 @@ Start by {setting up CanCan 2.0}[https://github.com/ryanb/cancan/blob/2.0/README
 
 Add the +MassCanCan+ gem to your Gemfile:
 
-  gem "masscancan", :git => "git://github.com/alfonsocora/masscancan.git"
+  gem "mass_can_can", :git => "git://github.com/alfonsocora/masscancan.git"
 
 Then modify the +Ability+ class to include +MassCanCan+ instead of +CanCan+:
 
