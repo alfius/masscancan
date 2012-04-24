@@ -24,6 +24,10 @@ Then modify the +Ability+ class to include +MassCanCan+ instead of +CanCan+:
     ...
   end
 
+=== Important
+
++MassCanCan+ is not compatible with +attr_accessible+, +attr_protected+, or any other method that specifies mass assignment security in the model. Make sure that those methods are not called when using +MassCanCan+.
+
 == Configuration
 
 MassCanCan uses the new ActiveRecord mass assignment security, which can be configured with the +mass_assignment_sanitizer+ configuration attribute:
