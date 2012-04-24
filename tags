@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Ability	lib/mass_can_can/ability.rb	/^  module Ability$/;"	m	class:MassCanCan
+Ability	test/dummy/app/models/ability.rb	/^class Ability$/;"	c
+AbilityTest	test/dummy/test/unit/ability_test.rb	/^class AbilityTest < ActiveSupport::TestCase$/;"	c
+Application	test/dummy/config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Dummy
+ApplicationController	test/dummy/app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
+ApplicationHelper	test/dummy/app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
+Authorizer	lib/mass_can_can/authorizer.rb	/^  class Authorizer$/;"	c	class:MassCanCan
+CreateProtectedModels	test/dummy/db/migrate/20120423224855_create_protected_models.rb	/^class CreateProtectedModels < ActiveRecord::Migration$/;"	c
+Dummy	test/dummy/config/application.rb	/^module Dummy$/;"	m
+Filters	lib/mass_can_can/filters.rb	/^  module Filters$/;"	m	class:MassCanCan
+MassCanCan	lib/mass_can_can/ability.rb	/^module MassCanCan$/;"	m
+MassCanCan	lib/mass_can_can/authorizer.rb	/^module MassCanCan$/;"	m
+MassCanCan	lib/mass_can_can/filters.rb	/^module MassCanCan$/;"	m
+MassCanCan	lib/mass_can_can/mock_rule.rb	/^module MassCanCan$/;"	m
+MassCanCan	lib/mass_can_can/version.rb	/^module MassCanCan$/;"	m
+MassCanCanTest	test/mass_can_can_test.rb	/^class MassCanCanTest < ActiveSupport::TestCase$/;"	c
+MockRule	lib/mass_can_can/mock_rule.rb	/^  class MockRule$/;"	c	class:MassCanCan
+ProtectedModel	test/dummy/app/models/protected_model.rb	/^class ProtectedModel < ActiveRecord::Base$/;"	c
+ProtectedModelTest	test/dummy/test/unit/protected_model_test.rb	/^class ProtectedModelTest < ActiveSupport::TestCase$/;"	c
+can	lib/mass_can_can/ability.rb	/^    def can(*args, &block)$/;"	f	class:MassCanCan.Ability
+cannot	lib/mass_can_can/ability.rb	/^    def cannot(*args, &block)$/;"	f	class:MassCanCan.Ability
+change	test/dummy/db/migrate/20120423224855_create_protected_models.rb	/^  def change$/;"	f	class:CreateProtectedModels
+guest_can_only_create_user	test/dummy/test/unit/ability_test.rb	/^  def guest_can_only_create_user$/;"	f	class:AbilityTest
+initialize	lib/mass_can_can/authorizer.rb	/^    def initialize$/;"	f	class:MassCanCan.Authorizer
+initialize	lib/mass_can_can/mock_rule.rb	/^    def initialize(base_behavior, action = nil, subject = nil, *extra_args, &block)$/;"	f	class:MassCanCan.MockRule
+initialize	test/dummy/app/models/ability.rb	/^  def initialize(user)$/;"	f	class:Ability
+initialize_mass_can_can	lib/mass_can_can/filters.rb	/^    def initialize_mass_can_can$/;"	f	class:MassCanCan.Filters
+reset	lib/mass_can_can/authorizer.rb	/^    def reset$/;"	f	class:MassCanCan.Authorizer

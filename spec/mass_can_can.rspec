@@ -1,0 +1,70 @@
+require 'spec_helper'
+
+class TestAbility
+  include MassCanCan::Ability
+end
+
+describe MassCanCan do
+  describe Ability do
+
+    before do
+      MassCanCan::Authorizer.instance.reset
+    end
+
+    describe "can" do
+      it "should update the authorizer" do
+        TestAbility.new.can(:update, :test_models, [:name, :description])
+
+        MassCanCan::Authorizer.instance.whitelist.should include(:test_models)
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("name")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("description")
+      end
+
+      it "should merge attributes from different calls to 'can'" do
+        TestAbility.new.can(:update, :test_models, [:name, :description])
+        TestAbility.new.can(:update, :test_models, [:name, :description, :title])
+
+        MassCanCan::Authorizer.instance.whitelist.should include(:test_models)
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("name")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("description")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("title")
+      end
+
+      it "should only consider the 'update' operation" do
+        TestAbility.new.can(:update, :test_models, [:name, :description])
+        TestAbility.new.can(:read, :test_models, [:title])
+
+        MassCanCan::Authorizer.instance.whitelist.should include(:test_models)
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("name")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("description")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should_not include("title")
+      end
+
+      it "should remember permissions of several models" do
+        TestAbility.new.can(:update, :test_models, [:name, :description])
+        TestAbility.new.can(:update, :other_models, [:name])
+        TestAbility.new.can(:update, :another_models)
+
+        MassCanCan::Authorizer.instance.whitelist.should include(:test_models)
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("name")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("description")
+
+        MassCanCan::Authorizer.instance.whitelist.should include(:other_models)
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("name")
+
+        # no assumptions made when no attributes are specified to 'update'
+      end
+    end
+
+    describe "cannot" do
+      it "should exclude the specified attributes" do
+        TestAbility.new.can(:update, :test_models, [:name, :description])
+        TestAbility.new.cannot(:update, :test_models, [:name])
+
+        MassCanCan::Authorizer.instance.whitelist.should include(:test_models)
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should_not include("name")
+        MassCanCan::Authorizer.instance.whitelist[:test_models].should include("description")
+      end
+    end
+  end
+end

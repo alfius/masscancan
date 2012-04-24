@@ -1,0 +1,33 @@
+= MassCanCan
+
+MassCanCan is an extension to the not-yet released CanCan 2.0. It grabs the permissions defined with CanCan and uses them to implement the ActiveRecord mass assignment security policies, removing the need to define the accessible attributes in the model and contributing to the application consistency.
+
+== Setup
+
+Start by {setting up CanCan 2.0}[https://github.com/ryanb/cancan/blob/2.0/README.rdoc#setup].
+
+Add the +MassCanCan+ gem to your Gemfile:
+
+  gem "masscancan", :git => "git://github.com/alfonsocora/masscancan.git"
+
+Then modify the +Ability+ class to include +MassCanCan+ instead of +CanCan+:
+
+  require 'mass_can_can/ability'
+
+  class Ability
+    include MassCanCan::Ability
+
+    def initialize(user)
+      ...
+    end
+
+    ...
+  end
+
+== Configuration
+
+MassCanCan uses the new ActiveRecord mass assignment security, which can be configured with the +mass_assignment_sanitizer+ configuration attribute:
+
+  config.active_record.mass_assignment_sanitizer = :strict
+
+This field also supports the value +:logger+ which logs failed update attempts to the log instead of rising errors.
