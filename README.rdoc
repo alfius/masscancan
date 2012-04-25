@@ -2,6 +2,26 @@
 
 MassCanCan is an extension to the not-yet released CanCan 2.0. It grabs the permissions defined with CanCan and uses them to implement the ActiveRecord mass assignment security policies, removing the need to define the accessible attributes in the model and contributing to the application consistency.
 
+== How it works
+
+Permissions are defined on a CanCan ability, like usual:
+
+  if user.admin?
+    can :update, :projects, [:name, :description]
+  else
+    can :read, :projects, [:name, :description]
+  end
+
+On every request, MassCanCan grabs these permissions, and reflects them in the model security, enabling or disabling accessible attributes. These way, you can be sure that when this code is run in the context of a user:
+
+  update_attributes(@project, name: "Hacking project name, muahahaha")
+
+the attribute will not be updated. You can choose between raising an error or logging this activity, through the +mass_assignment_sanitizer+ configuration property of +ActiveRecord+. If the code is run in the context of an administrator, the attribute will be updated.
+
+=== Important
+
++MassCanCan+ is not compatible with +attr_accessible+, +attr_protected+, or any other method that specifies mass assignment security in the model. Make sure that those methods are not called when using +MassCanCan+.
+
 == Setup
 
 Start by {setting up CanCan 2.0}[https://github.com/ryanb/cancan/blob/2.0/README.rdoc#setup].
@@ -23,10 +43,6 @@ Then modify the +Ability+ class to include +MassCanCan+ instead of +CanCan+:
 
     ...
   end
-
-=== Important
-
-+MassCanCan+ is not compatible with +attr_accessible+, +attr_protected+, or any other method that specifies mass assignment security in the model. Make sure that those methods are not called when using +MassCanCan+.
 
 == Configuration
 
