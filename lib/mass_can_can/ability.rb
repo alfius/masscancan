@@ -16,7 +16,7 @@ module MassCanCan
         c.class_eval do
           define_singleton_method(:active_authorizer) do
             wl = [""] | Authorizer.instance.whitelist[c.name.tableize.to_sym].to_a
-            {:default => ActiveModel::MassAssignmentSecurity::WhiteList.new(wl)}
+            { default: ActiveModel::MassAssignmentSecurity::WhiteList.new(wl) }
           end
         end
       end
@@ -39,7 +39,7 @@ module MassCanCan
       if rule.attributes && rule.actions.include?(:update)
         rule.subjects.each do |subject|
           Authorizer.instance.whitelist[subject] ||= Set[]
-          Authorizer.instance.whitelist[subject].reject! {|a| rule.attributes.map(&:to_s).include? a}
+          Authorizer.instance.whitelist[subject].reject! { |a| rule.attributes.map(&:to_s).include?(a) }
         end
       end
     end
