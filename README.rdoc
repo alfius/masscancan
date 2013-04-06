@@ -1,3 +1,5 @@
+= This gem is deprecated. See {Strong Parameters}[https://github.com/rails/strong_parameters]
+
 = MassCanCan
 
 MassCanCan is an extension to the not-yet released CanCan 2.0. It grabs the permissions defined with CanCan and uses them to implement the ActiveRecord mass assignment security policies, removing the need to define the accessible attributes in the model and contributing to the application consistency.
